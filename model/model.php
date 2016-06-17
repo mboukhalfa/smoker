@@ -1,5 +1,4 @@
 <?php
-
 function setSmoker($email, $passWord) {
 	$bdd = getBdd();
 	$query = $bdd->prepare('insert into smoker(id, email, password) values (:id,:email,:passWord)');
@@ -9,6 +8,36 @@ function setSmoker($email, $passWord) {
 		'passWord' => $passWord
 	));
 	
+}
+
+function checkSmoker ( $email ) {
+    
+    $bdd = getBdd();
+	$query = $bdd->prepare('select email from smoker where (email = :email)');
+	$result = $query->execute(array(
+		'email' => $email,
+	));
+    
+    $count = $query->rowCount();
+    $query->closeCursor();
+    
+    return $count;
+}
+
+function getHashedPassWord  ( $email ) {
+    
+    $bdd = getBdd();
+	$query = $bdd->prepare('select password from smoker where (email = :email )');
+	$result = $query->execute(array(
+		'email' => $email,
+	));
+    
+
+    $hash = $query->fetch() ['password'];
+    $query->closeCursor();
+    
+    return $hash;
+    
 }
 
 function getBdd() {

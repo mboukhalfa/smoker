@@ -4,6 +4,13 @@ require_once ( 'model/model.php' );
 
 function welcome () {
     
+    if ( isset ( $_SESSION [ 'email' ] ) ) { // check that the user not log in
+        
+        header('Location: ?action=home');
+        exit ();
+        
+    }
+    
 	require_once ( 'view/logIn.php' );
 
 } // welcome ();
@@ -37,9 +44,9 @@ function logIn () {
     }
     
     if( $valid ) {
-    
-        require_once ('view/home.php');
-        exit();
+        $_SESSION [ 'email' ] = $email;
+        header('Location: index.php?action=home');
+        exit;
     
     } else {
         
@@ -56,7 +63,25 @@ function logIn () {
     
 } // logIn ();
 
+
+function logOut () {
+    
+    session_unset ();
+    session_destroy ();
+    header('Location: index.php?action=welcome');
+    exit;
+
+} // logOut ();
+
+
 function signUp () {
+    
+    if ( isset ( $_SESSION [ 'email' ] ) ) { // check that the user not log in
+        
+        header('Location: ?action=home');
+        exit ();
+        
+    }
     
 	if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) ) {
         
@@ -92,6 +117,20 @@ function signUp () {
     }
 } // signUp ();
 
+
+function home () {
+    if ( isset ( $_SESSION [ 'email' ] ) ) {
+        
+        require_once ('view/home.php');
+        exit();
+        
+    } else {
+        
+        header('Location: ?action=welcome');
+        exit;
+        
+    }
+} // home ();
 
 function Error ( $errorMsg ) {
     

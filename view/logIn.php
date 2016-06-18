@@ -19,6 +19,8 @@
 <br/>
 <input type="password" name="passWord" placeholder="New pass word" value="<?php if ( isset ( $passWord ) ) echo $passWord ?>"> <?php if ( isset ( $erreur [ 'signUp' ] [ 'passWord' ] ) ) echo $erreur [ 'signUp' ] [ 'passWord' ]; ?>
 <br/>
+<input type="date" name="birthDate"/>
+<br/>
 <input type="submit" value="Sign Up">
 </form>
 

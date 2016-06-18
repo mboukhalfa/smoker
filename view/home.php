@@ -1,6 +1,7 @@
 <?php $title = "Home"; ?>
 <?php ob_start(); ?>
-<?= $_POST['email'] . ' home page '; ?>
+<?= $_SESSION['email'] . ' home page '; ?>
+<a href="index.php?action=logOut">Log Out</a>
 <?php $contents = ob_get_clean(); ?>
 
 <?php require_once('view/template.php'); ?>

@@ -5,52 +5,58 @@ session_name('usr');
 session_start();
 session_regenerate_id();
 
-
-
-require_once('controller/controller.php');
-const ACTION='action';
+define ('ACTION' ,'q');
+define ('BASE_URL' ,'/smoker/');
 
 try {
     
 	if ( isset ( $_GET [ ACTION ] ) ) {
 		
-        if ( $_GET [ ACTION ] == 'signUp' ) {
-			
-            signUp();
-            
-		} else if ( $_GET[ACTION]== 'logIn' ) {
-            
-            logIn ();
-            
-        } else if ( $_GET[ACTION]== 'logOut' ) {
-            
-            logOut ();
-            
-        } else if ( $_GET[ACTION]== 'home' ) {
-            
-            home ();
-            
-        } else if ( $_GET[ACTION]== 'welcome' ) {
-            // check that user not log in
-            welcome ();
-            
-        } else if ( $_GET[ACTION]== 'error' ) {
-            $errorMsg = isset ( $_GET [ 'errorMsg' ] ) ? $_GET['errorMsg'] : ''; 
-            throw new Exception ( $errorMsg );
-            
-        } else {
-            
-		throw new Exception ( 'Page not found' );
-            
-	}
+        switch ( $_GET [ ACTION ] ) {
+
+            case 'welcome':
+
+                require_once ( 'controller/welcome.php' );
+                break;
+
+            case 'signUp':
+
+                require_once ( 'controller/signUp.php' );
+                break;
+
+            case 'logIn':
+
+                require_once ( 'controller/logIn.php' );
+                break;
+
+            case 'logOut':
+
+                require_once ( 'controller/logOut.php' );
+                break;
+
+            case 'home':
+
+                require_once ( 'controller/home.php' );
+                break;
+
+            case 'error':
+
+                $errorMsg = isset ( $_GET [ 'errorMsg' ] ) ? $_GET['errorMsg'] : ''; 
+                throw new Exception ( $errorMsg );
+
+            default :
+
+                throw new Exception ( 'Page not found' );	
+                break;
+        }
         
 	} else {
         
-		home();	
+		require_once ( 'controller/home.php' );
 	}	
     
 } catch (Exception $e) {
 
-    error($e->getMessage());
+    require_once ( 'controller/error.php' );
 
 }

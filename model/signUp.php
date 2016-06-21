@@ -1,14 +1,17 @@
 <?php
 
-require_once ( 'model.php' );
 
-function setSmoker($email, $passWord) {
+
+function setSmoker( $firstName, $lastName, $email, $passWord, $confirmationId ) {
 	$bdd = getBdd();
-	$query = $bdd->prepare('insert into smoker(id, email, password) values (:id,:email,:passWord)');
+	$query = $bdd->prepare('insert into smoker(id, firstName, lastName, email, passWord, confirmationId) values (:id, :firstName, :lastName, :email,:passWord, :confirmationId)');
 	$query->execute(array(
 		'id' => '',
+		'firstName' => $firstName,
+		'lastName' => $lastName,
 		'email' => $email,
-		'passWord' => $passWord
+		'passWord' => $passWord,
+		'confirmationId' => $confirmationId
 	));
 	
 }

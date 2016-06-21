@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS profile;
+DROP TABLE IF EXISTS smoker;
+
+CREATE TABLE smoker (
+
+    id int(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    firstName varchar(30) NOT NULL,
+    lastName varchar(30) NOT NULL,
+    email varchar(255) NOT NULL,
+    passWord varchar(255) NOT NULL,
+    creationDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    confirmationId varchar (255), 
+    CONSTRAINT uc_email UNIQUE (email)
+    
+) ENGINE=InnoDB DEFAULT CHARSET= utf8;
+
+
+
+CREATE TABLE profile (
+    
+    id int(10) UNSIGNED PRIMARY KEY,
+    birthDate date DEFAULT NULL,
+    birthPlace varchar(30) DEFAULT NULL,
+    residence varchar(255) DEFAULT NULL,
+    photo varchar(255) DEFAULT NULL,
+    firstCigarette date DEFAULT NULL,
+    creationDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES smoker (id)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

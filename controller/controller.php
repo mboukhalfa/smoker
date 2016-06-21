@@ -1,5 +1,7 @@
 <?php
 
+require_once ( 'model/model.php' );
+
 function clearInput ( $input ) {
     
     $input = trim($input);
@@ -10,17 +12,27 @@ function clearInput ( $input ) {
     
 }
 
+function validName ( $name ) {
+    
+    if ( ! preg_match ( '#^[a-zA-Z]{3,30}$#', $name ) )
+        
+        return 0;
+    
+    return 1;
+}
 
-function checkEmail ( $email ) {
+function validEmail ( $email ) {
 
     if ( ! preg_match ( '#^[a-z0-9._-]{3,64}@[a-z0-9._-]{2,64}\.[a-z]{2,4}$#', $email) )
+        
         return 0;
-        return 1;
+    
+    return 1;
 
 }
 
 
-function checkPassWord ( $passWord ) {
+function validPassWord ( $passWord ) {
     
     if ( strlen ( $passWord ) < 8 ) return 0;
     
@@ -30,12 +42,31 @@ function checkPassWord ( $passWord ) {
 
 function userLogedIn () {
     
-    if ( isset ( $_SESSION [ 'email' ] ) ) { // check that the user not log in
+    if ( isset ( $_SESSION [ 'email' ] ) && isset ( $_SESSION [ 'passWord' ] ) ) { // check that the user not log in
         
-        return true;
+        $email = $_SESSION [ 'email' ];
+        $passWord = $_SESSION [ 'passWord' ];
         
-    } else {
-        
-        return false;
+        if ( checkSmoker ( $email ) ) {
+            
+            if ( password_verify ( $passWord, getHashedPassWord ( $email ) ) ) {
+                
+                if ( accountConfirmed ( $email ) ) {
+                
+                    return true;
+                
+                } else {
+                    
+                    require_once ( 'view/signedUp.php' );
+                    exit ();
+                
+                }
+                
+            }
+            
+        }
+    
     }
+    
+    return false;
 }

@@ -23,6 +23,10 @@ try {
 
                 require_once ( 'controller/signUp.php' );
                 break;
+            case 'accountConfirmation':
+
+                require_once ( 'controller/confirm.php' );
+                break;
 
             case 'logIn':
 
@@ -37,6 +41,11 @@ try {
             case 'home':
 
                 require_once ( 'controller/home.php' );
+                break;
+            
+            case 'profile':
+
+                require_once ( 'controller/profile.php' );
                 break;
 
             case 'error':

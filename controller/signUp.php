@@ -10,28 +10,39 @@ if ( userLogedIn () ) { // check that the user not log in
 
 }
 
-if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) ) {
+if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) && isset ( $_POST [ 'firstName' ] ) && isset ( $_POST [ 'lastName' ] ) ) {
 
 
     //variable declaration
-
+    $operation='signUp';// display errors in view page
     $valid = true;
+    $firstName = ucfirst( strtolower ( clearInput ( $_POST [ 'firstName' ] ) ) );
+    $firstNameE = '';
+    $lastName = strtoupper ( clearInput ( $_POST [ 'lastName' ] ) );
+    $lastNameE = '';
     $email = strtolower ( clearInput ( $_POST [ 'email' ] ) );
     $passWord = clearInput ( $_POST [ 'passWord' ] );
-    $birthDate = '04/01/1994';
     $emailError = '';
     $passWordError = '';
 
-    if ( ! checkEmail ( $email ) ) {
+
+    if ( ! validName ( $firstName ) ) {
+        
+        $firstNameE = 'First name not valid';
+        $valid = false;
+        
+    }
+    
+    if ( ! validName ( $lastName ) ) {
+        
+        $lastNameE = 'First name not valid';
+        $valid = false;
+        
+    }
+    
+    if ( ! validEmail ( $email ) ) {
 
         $emailError = 'email not valid';
-        $valid = false;
-
-    }
-
-    if ( ! checkPassWord ( $passWord ) ) {
-
-        $passWordError = 'Password not valid';
         $valid = false;
 
     }
@@ -43,10 +54,20 @@ if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) ) {
         
     }
     
+    if ( ! validPassWord ( $passWord ) ) {
+
+        $passWordError = 'Password not valid';
+        $valid = false;
+
+    }
+
     if ( $valid ) {
         
         $passWordHashed = password_hash ( $passWord, PASSWORD_DEFAULT );
-        setSmoker ( $email, $passWordHashed );
+        $confirmationId = uniqid('', true);
+        setSmoker ( $firstName, $lastName ,$email, $passWordHashed, $confirmationId );
+        $_SESSION [ 'email' ] = $email;
+        $_SESSION [ 'passWord' ] = $passWord;
         require_once ( 'view/signedUp.php' );
         exit ();
         

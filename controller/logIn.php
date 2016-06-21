@@ -4,7 +4,7 @@ require_once ( 'model/logIn.php' );
 require_once ( 'controller.php' );
 
 if ( userLogedIn () ) { // check that the user not log in
-
+    
     header('Location: ?' . ACTION . '=home');
     exit ();
 
@@ -13,21 +13,21 @@ if ( userLogedIn () ) { // check that the user not log in
 if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) ) {
     
     //variable declaration
-
+    $operation= 'signIn';// display singIn errors in view page
     $valid = true;
     $email = strtolower ( clearInput ( $_POST [ 'email' ] ) );
     $passWord = clearInput ( $_POST [ 'passWord' ] );
     $emailError = '';
     $passWordError = '';
 
-    if ( ! checkEmail ( $email ) ) {
+    if ( ! validEmail ( $email ) ) {
 
         $emailError = 'email not valid';
         $valid = false;
 
     }
 
-    if ( ! checkPassWord ( $passWord ) ) {
+    if ( ! validPassWord ( $passWord ) ) {
 
         $passWordError = 'Password not valid';
         $valid = false;
@@ -57,6 +57,7 @@ if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) ) {
     if( $valid ) {
 
         $_SESSION [ 'email' ] = $email;
+        $_SESSION [ 'passWord' ] = $passWord;
         header('Location: index.php?'. ACTION . '=home');
         exit ();
 

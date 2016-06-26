@@ -1,11 +1,11 @@
 <?php
 
-require_once ( 'model/logIn.php' );
-require_once ( 'controller.php' );
+require_once ( $page [ 'model' ] [ 'logIn' ] );
+require_once ( $page [ 'controller' ] [ 'controller' ] );
 
 if ( userLogedIn () ) { // check that the user not log in
     
-    header('Location: ?' . ACTION . '=home');
+    header ( 'Location: ' . $url [ 'home' ] );
     exit ();
 
 }
@@ -58,12 +58,12 @@ if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) ) {
 
         $_SESSION [ 'email' ] = $email;
         $_SESSION [ 'passWord' ] = $passWord;
-        header('Location: index.php?'. ACTION . '=home');
+        header( 'Location: ' . $url [ 'home' ] );
         exit ();
 
     } else {
 
-        require_once ('view/welcome.php');
+        require_once ( $page [ 'view' ] [ 'welcome' ] );
         exit();
 
     }

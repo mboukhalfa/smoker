@@ -1,11 +1,11 @@
 <?php
 
-require_once ( 'model/profile.php' );
-require_once ( 'controller.php' );
+require_once ( $page [ 'controller' ] [ 'controller' ] );
+require_once ( $page [ 'model' ] [ 'profile' ] );
 
 if ( ! userLogedIn () ) { // check that the user not log in
     
-    header('Location: ?' . ACTION . '=welcome');
+    header( 'Location: ' . $url [ 'welcome' ] );
     exit ();
 
 }
@@ -28,7 +28,7 @@ if ( isset ( $_GET [ 'profileId' ] ) ) {
         $firstCigarette = $profile [ 'firstCigarette' ];
         $creationDate = $profile [ 'creationDate' ];
         
-        require_once ('view/profile.php');
+        require_once ( $page [ 'view' ] [ 'profile' ] );
         
     } else {
         

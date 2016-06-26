@@ -1,6 +1,6 @@
 <?php
 
-require_once ( 'model/model.php' );
+require_once ( $page [ 'model' ] [ 'model' ] );
 
 function clearInput ( $input ) {
     
@@ -57,7 +57,7 @@ function userLogedIn () {
                 
                 } else {
                     
-                    require_once ( 'view/signedUp.php' );
+                    require_once ( $page [ 'view' ] [ 'signedUp' ] );
                     exit ();
                 
                 }

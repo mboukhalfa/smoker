@@ -2,4 +2,4 @@
 
 $errorMsg = $e->getMessage();
 
-require_once ( 'view/error.php' );
+require_once ( $page [ 'view' ] [ 'error' ] );

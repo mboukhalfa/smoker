@@ -1,10 +1,10 @@
 <?php
 
 
-require_once ( 'model/confirm.php' );
-require_once ( 'controller.php' );
+require_once ( $page [ 'model' ] [ 'confirm' ] );
+require_once ( $page [ 'controller' ] [ 'controller' ] );
 
-if ( isset ( $_SESSION [ 'email' ] ) && isset ( $_SESSION [ 'passWord' ] ) ) { // check that the user not log in
+if ( isset ( $_SESSION [ 'email' ] ) && isset ( $_SESSION [ 'passWord' ] ) ) { // check that the user log in
         
     $email = $_SESSION [ 'email' ];
     $passWord = $_SESSION [ 'passWord' ];
@@ -15,7 +15,7 @@ if ( isset ( $_SESSION [ 'email' ] ) && isset ( $_SESSION [ 'passWord' ] ) ) { /
 
             if ( accountConfirmed ( $email ) ) {
 
-                header('Location: ?' . ACTION . '=home');
+                header( 'Location: ' . $url [ 'home' ] );
                 exit ();
 
             } else { // account not confirmed
@@ -30,7 +30,7 @@ if ( isset ( $_SESSION [ 'email' ] ) && isset ( $_SESSION [ 'passWord' ] ) ) { /
                         $id = getId ( $email );
                         createProfile ( $id );
                         
-                        header('Location: ?' . ACTION . '=home');
+                        header( 'Location: ' . $url [ 'home' ] );
                         exit ();
                         
                     } else {

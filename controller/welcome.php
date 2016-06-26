@@ -1,12 +1,12 @@
 <?php
 
-require_once ( 'controller.php' );
+require_once ( $page [ 'controller' ] [ 'controller' ] );
 
 if ( userLogedIn () ) { // check that the user not log in
 
-    header('Location: ?' . ACTION . '=home');
+    header( 'Location: ' . $url [ 'home' ] );
     exit ();
 
 }
 
-require_once ( 'view/welcome.php' );
+require_once ( $page [ 'view' ] [ 'welcome' ] );

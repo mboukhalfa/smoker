@@ -5,8 +5,8 @@ session_name('usr');
 session_start();
 session_regenerate_id();
 
-define ('ACTION' ,'q');
-define ('BASE_URL' ,'/smoker/');
+include_once ('global/config.php');
+
 
 try {
     
@@ -16,36 +16,36 @@ try {
 
             case 'welcome':
 
-                require_once ( 'controller/welcome.php' );
+                require_once ( $page [ 'controller' ] [ 'welcome' ] );
                 break;
 
             case 'signUp':
 
-                require_once ( 'controller/signUp.php' );
+                require_once ( $page [ 'controller' ] [ 'signUp' ] );
                 break;
             case 'accountConfirmation':
 
-                require_once ( 'controller/confirm.php' );
+                require_once ( $page [ 'controller' ] [ 'confirm' ] );
                 break;
 
             case 'logIn':
 
-                require_once ( 'controller/logIn.php' );
+                require_once ( $page [ 'controller' ] [ 'logIn' ] );
                 break;
 
             case 'logOut':
 
-                require_once ( 'controller/logOut.php' );
+                require_once ( $page [ 'controller' ] [ 'logOut' ] );
                 break;
 
             case 'home':
 
-                require_once ( 'controller/home.php' );
+                require_once ( $page [ 'controller' ] [ 'home' ] );
                 break;
             
             case 'profile':
 
-                require_once ( 'controller/profile.php' );
+                require_once ( $page [ 'controller' ] [ 'profile' ] );
                 break;
 
             case 'error':
@@ -61,11 +61,11 @@ try {
         
 	} else {
         
-		require_once ( 'controller/home.php' );
+		require_once ( $page [ 'controller' ] [ 'home' ] );
 	}	
     
 } catch (Exception $e) {
 
-    require_once ( 'controller/error.php' );
+    require_once ( $page [ 'controller' ] [ 'error' ] );
 
 }

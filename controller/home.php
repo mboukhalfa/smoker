@@ -1,16 +1,16 @@
 <?php
 
-require_once ( 'controller.php' );
+require_once ( $page [ 'controller' ] [ 'controller' ] );
 
 if ( userLogedIn () ) {
     $id = getId ( $_SESSION [ 'email' ] );
     $profileId = $id; 
-    require_once ('view/home.php');
+    require_once ( $page [ 'view' ] [ 'home' ] );
     exit();
 
 } else {
 
-    header('Location: ?' . ACTION . '=welcome');
+    header( 'Location: ' . $url [ 'welcome' ] );
     exit;
 
 }

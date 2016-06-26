@@ -1,11 +1,11 @@
 <?php
 
-require_once ( 'model/signUp.php' );
-require_once ( 'controller.php' );
+require_once ( $page [ 'controller' ] [ 'controller' ] );
+require_once ( $page [ 'model' ] [ 'signUp' ] );
 
 if ( userLogedIn () ) { // check that the user not log in
 
-    header('Location: ?' . ACTION . '=home');
+    header( 'Location: ' . $url [ 'home' ] );
     exit ();
 
 }
@@ -68,12 +68,12 @@ if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) && isset ( 
         setSmoker ( $firstName, $lastName ,$email, $passWordHashed, $confirmationId );
         $_SESSION [ 'email' ] = $email;
         $_SESSION [ 'passWord' ] = $passWord;
-        require_once ( 'view/signedUp.php' );
+        require_once ( $page [ 'view' ] [ 'signedUp' ] );
         exit ();
         
     } else {
         
-        require_once ('view/welcome.php');
+        require_once ( $page [ 'view' ] [ 'welcome' ] );
         exit();
         
     }
@@ -83,5 +83,3 @@ if ( isset ( $_POST [ 'email' ] ) && isset ( $_POST [ 'passWord' ] ) && isset ( 
     throw new Exception ( 'Check feilds and sing up again.' );
 
 }
-
-

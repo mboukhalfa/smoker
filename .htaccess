@@ -1,4 +1,7 @@
 #proteger tt les fichier de l'acces direct sauf index
 #empicher l 'idexation des dossier
+
+#RewriteBase /pfe
+
 ErrorDocument 403 /smoker/?action=error&&errorMsg=Page+not+found
 ErrorDocument 404 /smoker/?action=error&&errorMsg=Page+not+found

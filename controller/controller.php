@@ -40,6 +40,48 @@ function validPassWord ( $passWord ) {
 
 }
 
+function validSex ( $sex ) {
+    
+    if ( preg_match ( '#^(M|W)$#', $sex )   ) return 1;
+    
+    return 0;
+
+}
+
+function validPhoto ( $photo ) {
+    
+    if ( $photo ["error"] == 4 ) return 1;
+    
+    $photoExts = array('jpg', 'jpeg', 'png');
+    $extension = end ( explode ( '.', $photo ['name'] ) );
+    
+    if (!(
+        (
+            
+            ( $photo["type"] == "image/jpeg")
+         || ( $photo["type"] == "image/png")
+         || ( $photo["type"] == "image/pjpeg")
+        
+        )
+        
+        && ($photo [ 'size' ] < 2000000)
+        && in_array($extension, $photoExts)
+        
+        )
+        ) {
+        return 0;
+    }
+        
+        if ( $photo [ 'error' ] > 0) {
+            
+            throw new Exception ( $_FILES["file"]["error"] );
+        
+        } 
+        
+    return 1;
+
+}
+
 function userLogedIn () {
     
     if ( isset ( $_SESSION [ 'email' ] ) && isset ( $_SESSION [ 'passWord' ] ) ) { // check that the user not log in

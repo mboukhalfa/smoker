@@ -48,6 +48,11 @@ try {
                 require_once ( $page [ 'controller' ] [ 'profile' ] );
                 break;
 
+            case 'myProfile':
+
+                require_once ( $page [ 'controller' ] [ 'myProfile' ] );
+                break;
+
             case 'error':
 
                 $errorMsg = isset ( $_GET [ 'errorMsg' ] ) ? $_GET['errorMsg'] : ''; 

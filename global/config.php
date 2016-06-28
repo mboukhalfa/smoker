@@ -21,6 +21,7 @@ $url = array (
     'confirm'       => BASE_URL . '?' . ACTION . '=accountConfirmation',
     'signUp'        => BASE_URL . '?' . ACTION . '=signUp',
     'logIn'         => BASE_URL . '?' . ACTION . '=logIn',
+    'myProfile'     => BASE_URL . '?' . ACTION . '=myProfile',
     
 );
 
@@ -33,6 +34,7 @@ $page = array (
         'confirm'   => $path [ 'model' ] . 'confirm.php', 
         'logIn'     => $path [ 'model' ] . 'logIn.php', 
         'profile'   => $path [ 'model' ] . 'profile.php', 
+        'myProfile'   => $path [ 'model' ] . 'myProfile.php', 
         
     ),
 
@@ -47,18 +49,21 @@ $page = array (
         'home'       => $path [ 'controller' ] . 'home.php', 
         'profile'    => $path [ 'controller' ] . 'profile.php', 
         'error'      => $path [ 'controller' ] . 'error.php', 
+        'myProfile'  => $path [ 'controller' ] . 'myProfile.php', 
         
     ),
 
     'view' => array (
     
-        'template'   => $path [ 'view' ] . 'template.php', 
-        'welcome'    => $path [ 'view' ] . 'welcome.php', 
-        'signedUp'   => $path [ 'view' ] . 'signedUp.php', 
-        'home'       => $path [ 'view' ] . 'home.php', 
-        'profile'    => $path [ 'view' ] . 'profile.php', 
-        'error'      => $path [ 'view' ] . 'error.php', 
-        'nav'      => $path [ 'view' ] . 'nav.php', 
+        'template'      => $path [ 'view' ] . 'template.php', 
+        'welcome'       => $path [ 'view' ] . 'welcome.php', 
+        'signedUp'      => $path [ 'view' ] . 'signedUp.php', 
+        'home'          => $path [ 'view' ] . 'home.php', 
+        'profile'       => $path [ 'view' ] . 'profile.php', 
+        'error'         => $path [ 'view' ] . 'error.php', 
+        'nav'           => $path [ 'view' ] . 'nav.php', 
+        'myProfile'     => $path [ 'view' ] . 'myProfile.php', 
+        'editMyProfile' => $path [ 'view' ] . 'editMyProfile.php', 
         
     ),
 

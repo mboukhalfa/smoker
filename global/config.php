@@ -1,15 +1,16 @@
 <?php
 
 define ('BASE_PATH','./');
-define ('BASE_URL','http://localhost/smoker/');
+define ('BASE_URL','http://192.168.43.24/smoker/');
 define ('ACTION' ,'q');
+define ('PHOTO_PROFILE_MAX_SIZE' , 2000000);
 
 $path = array (
     
     'model'         => BASE_PATH . 'model/',
     'controller'    => BASE_PATH . 'controller/',
     'view'          => BASE_PATH . 'view/',
-    
+    'profilePhoto'  => BASE_PATH . 'profilePhoto/',
 );
 
 $url = array (

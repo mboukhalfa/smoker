@@ -1,12 +1,11 @@
 <?php
 
-session_set_cookie_params ( 0 , '/' , 'localhost' , false , true );
+//session_set_cookie_params ( 0 , '/' , 'localhost' , false , true );
 session_name('usr');
 session_start();
 session_regenerate_id();
 
 include_once ('global/config.php');
-
 
 try {
     

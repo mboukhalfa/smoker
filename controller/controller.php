@@ -48,28 +48,72 @@ function validSex ( $sex ) {
 
 }
 
+function dateIsNull ( $date ) {
+    
+    $date = explode( "-", $date );
+    
+    if ( implode($date) === "" ) {
+    
+        return 1;
+        
+    }
+    
+    return 0;
+    
+}
+
+function validDate ( $date ) {
+    
+    $date = explode( "-", $date );
+    
+    if ( implode($date) === "" ) {
+        
+        return 1;
+        
+    } else if ( ! preg_match('#^([0-9])+$#', implode($date) ) ) {
+        
+        return 0;
+        
+    }
+    
+    $y = intval ( $date [ 0 ] );
+    $m = intval ( $date [ 1 ] );
+    $d = intval ( $date [ 2 ] );
+    
+    if ( checkdate ( $m, $d, $y ) ) {
+        
+        return 1;
+    }
+    
+    return 0;
+
+}
+/**
+*valid photo passer from user before saving in bdd
+*
+* User pass photo that can be so havy and that 
+* Can be so photo not supported by browser
+* for that raison we should verifiy
+*@param string name.ext of picture
+*@return int 1 if true 0 else
+*@author boukhalfa mohammed
+*/
 function validPhoto ( $photo ) {
     
     if ( $photo ["error"] == 4 ) return 1;
     
+    echo $photo["type"];
+    $conditionType = ( $photo["type"] == "image/jpeg") || ( $photo["type"] == "image/png") || ( $photo["type"] == "image/pjpeg");
+    $conditionSize = $photo [ 'size' ] <= PHOTO_PROFILE_MAX_SIZE;
     $photoExts = array('jpg', 'jpeg', 'png');
     $extension = end ( explode ( '.', $photo ['name'] ) );
+    $conditionExtention = in_array ( $extension, $photoExts );
+    $condition = $conditionType && $conditionSize && $conditionExtention;
     
-    if (!(
-        (
-            
-            ( $photo["type"] == "image/jpeg")
-         || ( $photo["type"] == "image/png")
-         || ( $photo["type"] == "image/pjpeg")
+    if ( ! $condition ) {
         
-        )
-        
-        && ($photo [ 'size' ] < 2000000)
-        && in_array($extension, $photoExts)
-        
-        )
-        ) {
         return 0;
+        
     }
         
         if ( $photo [ 'error' ] > 0) {

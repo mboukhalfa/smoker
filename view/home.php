@@ -5,11 +5,11 @@
     <?php require_once ( $page [ 'view' ] [ 'nav' ] ); ?>
     
     this is your home page
-percenage of peaple think that smoking is good
-percenage of peaple think that smoking is bad
+percenage of peaple to stop
+percenage of peaple want to stay smoking
 percenage of peaple regrette the first cigarette
-percenage of peaple think that they will never stop
-percenage of peaple try to stop
+people think that it was a good experience
+
 percenage of women
 percenage of men
 percenage of boy

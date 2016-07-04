@@ -21,15 +21,13 @@ CREATE TABLE smoker (
 CREATE TABLE profile (
     
     id int(10) UNSIGNED PRIMARY KEY,
-    birthDate date DEFAULT NULL, #check at least 5 years from today 
+    birthDate date NOT NULL DEFAULT '0000-00-00', #check at least 5 years from today 
     sex char(1) DEFAULT NULL,
-    birthPlace varchar(30) DEFAULT NULL,
     residence varchar(255) DEFAULT NULL,
     photo varchar(255) DEFAULT NULL,
-    firstCigarette date DEFAULT NULL, #check greaterthan birth
+    firstCigarette date NOT NULL DEFAULT '0000-00-00', #check greaterthan birth
     regret char(1) DEFAULT NULL, 
-    hopeStop char(1) DEFAULT NULL, 
-    loveSmoking char(1) DEFAULT NULL, 
+    hopeStop char(1) DEFAULT NULL,  
     creationDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT profile_fk_id FOREIGN KEY (id) REFERENCES smoker (id)
 

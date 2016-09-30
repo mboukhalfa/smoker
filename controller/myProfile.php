@@ -186,7 +186,7 @@ if ( isset ( $_GET [ 'edit' ] ) ) {
 
 function deleteExists ($path, $name) {
              
-        $photoExts = array('jpg', 'jpeg', 'png');
+        $photoExts = array('JPG', 'JPEG', 'PNG','jpg','jpeg','png');
     
         for ($i = 0; $i < count($photoExts) ; $i++) { //delete existed pictures
     

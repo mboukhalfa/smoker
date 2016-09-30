@@ -1,7 +1,7 @@
 <?php
 
 define ('BASE_PATH','./');
-define ('BASE_URL','http://192.168.43.24/smoker/');
+define ('BASE_URL','http://localhost/smoker/');
 define ('ACTION' ,'q');
 define ('PHOTO_PROFILE_MAX_SIZE' , 2000000);
 
